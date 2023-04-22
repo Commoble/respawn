@@ -1,0 +1,15 @@
+{
+	"required": true,
+	"package": "commoble.respawn.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"refmap": "respawn.refmap.json",
+	"mixins": 
+	[
+        "PlayerListMixin"
+	],
+	"injectors": 
+	{
+		"defaultRequire": 1
+	},
+	"minVersion": "0.8"
+}
