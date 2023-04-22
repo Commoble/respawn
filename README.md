@@ -4,6 +4,8 @@ Respawn is a mod for minecraft forge that allows server ops to set the default s
 
 https://curseforge.com/minecraft/mc-mods/respawn
 
+This mod is fully serversided; clients do not need to install the mod to connect to servers that have the mod, and clients without the mod can use the mod's commands if the server has the mod.
+
 ## Commands
 
 Respawn provides two commands for configuring respawn in-game (respawn can also be configured prior to world creation by using config files, see the next section for more information).
