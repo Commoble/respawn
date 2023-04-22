@@ -134,7 +134,7 @@ dependencies {
 	minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 	annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 	implementation fg.deobf("commoble.databuddy:${databuddy_branch}:${databuddy_version}:config")
-	shade fg.deobf("commoble.databuddy:${databuddy_branch}:${databuddy_version}")
+	shade fg.deobf("commoble.databuddy:${databuddy_branch}:${databuddy_version}:config")
 }
 
 shadowJar {
