@@ -2,7 +2,7 @@ package commoble.respawn;
 
 import commoble.databuddy.config.ConfigHelper;
 import commoble.databuddy.config.ConfigHelper.ConfigObject;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -27,7 +27,7 @@ public record ServerConfig(BooleanValue enabled, ConfigObject<ResourceKey<Level>
 		builder.comment(
 			"Dimension players will respawn in when they have no respawn point set (from bed, anchors, etc).",
 			"This is \"minecraft:overworld\" by default.");
-		var respawnDimension = ConfigHelper.defineObject(builder, "respawnDimension", ResourceKey.codec(Registry.DIMENSION_REGISTRY), Level.OVERWORLD);
+		var respawnDimension = ConfigHelper.defineObject(builder, "respawnDimension", ResourceKey.codec(Registries.DIMENSION), Level.OVERWORLD);
 		
 		builder.comment(
 			"Minimum permission level to use /respawn commands to alter respawn config in-game.",
