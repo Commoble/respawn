@@ -8,22 +8,22 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 
-import commoble.databuddy.config.ConfigHelper;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.DimensionArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ClientInformation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(RespawnMod.MODID)
@@ -43,7 +43,7 @@ public class RespawnMod
     {
     	instance = this;
     	
-        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+        IEventBus forgeBus = NeoForge.EVENT_BUS;
         
         this.serverConfig = ConfigHelper.register(ModConfig.Type.SERVER, ServerConfig::create);
         
@@ -100,7 +100,7 @@ public class RespawnMod
 		return serverConfig.enabled().get() ? serverConfig.respawnDimension().get() : Level.OVERWORLD;
 	}
 	
-	public void onPlayerListGetPlayerForLogin(PlayerList playerList, GameProfile profile, CallbackInfoReturnable<ServerPlayer> cir)
+	public void onPlayerListGetPlayerForLogin(PlayerList playerList, GameProfile profile, ClientInformation clientInfo, CallbackInfoReturnable<ServerPlayer> cir)
 	{
 		if (serverConfig.enabled().get())
 		{
@@ -113,7 +113,7 @@ public class RespawnMod
 			}
 			else
 			{
-				cir.setReturnValue(new ServerPlayer(server, serverLevel, profile));
+				cir.setReturnValue(new ServerPlayer(server, serverLevel, profile, clientInfo));
 			}
 		}
 	}

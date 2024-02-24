@@ -11,6 +11,7 @@ import com.mojang.authlib.GameProfile;
 import commoble.respawn.RespawnMod;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ClientInformation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
@@ -26,9 +27,9 @@ public class PlayerListMixin
 	}
 	
 	@Inject(method="getPlayerForLogin", at=@At("TAIL"), cancellable=true)
-	private void onPlayerListGetPlayerForLogin(GameProfile profile, CallbackInfoReturnable<ServerPlayer> cir)
+	private void onPlayerListGetPlayerForLogin(GameProfile profile, ClientInformation clientInfo, CallbackInfoReturnable<ServerPlayer> cir)
 	{
-		RespawnMod.instance().onPlayerListGetPlayerForLogin((PlayerList)(Object)this, profile, cir);
+		RespawnMod.instance().onPlayerListGetPlayerForLogin((PlayerList)(Object)this, profile, clientInfo, cir);
 	}
 	
 	@Redirect(method="respawn", at=@At(value="INVOKE", target="Lnet/minecraft/server/MinecraftServer;overworld()Lnet/minecraft/server/level/ServerLevel;"))

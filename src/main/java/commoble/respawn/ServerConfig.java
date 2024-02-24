@@ -1,17 +1,16 @@
 package commoble.respawn;
 
-import commoble.databuddy.config.ConfigHelper;
-import commoble.databuddy.config.ConfigHelper.ConfigObject;
+import commoble.respawn.ConfigHelper.ConfigObject;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
-import net.minecraftforge.common.ForgeConfigSpec.IntValue;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec.BooleanValue;
+import net.neoforged.neoforge.common.ModConfigSpec.IntValue;
 
 public record ServerConfig(BooleanValue enabled, ConfigObject<ResourceKey<Level>> respawnDimension, IntValue minPermissionLevel)
 {
-	public static ServerConfig create(ForgeConfigSpec.Builder builder)
+	public static ServerConfig create(ModConfigSpec.Builder builder)
 	{
 		builder.comment(
 			"This serverconfig can be configured in-game by server ops via commands.",
