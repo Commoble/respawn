@@ -1,8 +1,8 @@
 # Respawn
 
 Respawn is a mod for minecraft forge that allows server ops to set the default spawn/respawn dimension for the server. Built jars are available here:
-
-https://curseforge.com/minecraft/mc-mods/respawn
+* https://curseforge.com/minecraft/mc-mods/respawn
+* https://modrinth.com/mod/respawn
 
 This mod is fully serversided; clients do not need to install the mod to connect to servers that have the mod, and clients without the mod can use the mod's commands if the server has the mod.
 
